@@ -6,31 +6,27 @@ export function run() {
 
   const occurrences = matrix.reduce((count, row, index) => {
     const [threeUp, twoUp, oneUp, curr, oneDown, twoDown, threeDown] = [
-      (matrix[index - 3] || '').split(''),
-      (matrix[index - 2] || '').split(''),
-      (matrix[index - 1] || '').split(''),
+      matrix[index - 3] || '',
+      matrix[index - 2] || '',
+      matrix[index - 1] || '',
       row.split(''),
-      (matrix[index + 1] || '').split(''),
-      (matrix[index + 2] || '').split(''),
-      (matrix[index + 3] || '').split(''),
+      matrix[index + 1] || '',
+      matrix[index + 2] || '',
+      matrix[index + 3] || '',
     ];
 
     for (let i = 0; i < row.length; i++) {
       const character = row[i];
       if (character !== 'X') continue;
 
-      const left = [curr[i - 1], curr[i - 2], curr[i - 3]].join('');
-      const upLeft = [oneUp[i - 1], twoUp[i - 2], threeUp[i - 3]].join('');
-      const up = [oneUp[i], twoUp[i], threeUp[i]].join('');
-      const upRight = [oneUp[i + 1], twoUp[i + 2], threeUp[i + 3]].join('');
-      const right = [curr[i + 1], curr[i + 2], curr[i + 3]].join('');
-      const downRight = [oneDown[i + 1], twoDown[i + 2], threeDown[i + 3]].join(
-        ''
-      );
-      const down = [oneDown[i], twoDown[i], threeDown[i]].join('');
-      const downLeft = [oneDown[i - 1], twoDown[i - 2], threeDown[i - 3]].join(
-        ''
-      );
+      const left = curr[i - 1] + curr[i - 2] + curr[i - 3];
+      const upLeft = oneUp[i - 1] + twoUp[i - 2] + threeUp[i - 3];
+      const up = oneUp[i] + twoUp[i] + threeUp[i];
+      const upRight = oneUp[i + 1] + twoUp[i + 2] + threeUp[i + 3];
+      const right = curr[i + 1] + curr[i + 2] + curr[i + 3];
+      const downRight = oneDown[i + 1] + twoDown[i + 2] + threeDown[i + 3];
+      const down = oneDown[i] + twoDown[i] + threeDown[i];
+      const downLeft = oneDown[i - 1] + twoDown[i - 2] + threeDown[i - 3];
 
       const matches = [
         left,
